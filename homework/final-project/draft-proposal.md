@@ -15,4 +15,5 @@ I would also like to try automating some of the initial analysis and flagging of
 For the most part, I think the components of this project should be relatively straightforward. The most difficult part will be parsing the PDFs — these lack nicely structured markup or meta-data, so it will be pretty complicated to tell where each agenda item begins and ends. I’m looking into a few more advanced PDF-to-text tools that try to use the document’s layout to interpret an XML structure, which can then be refined using regular expressions. I’d appreciate any suggestions you have about this (I’ve included links to sample agendas below, in case that’s helpful).
 
 City of San Jose: http://sanjoseca.gov/DocumentCenter/View/40106
+
 County of Santa Clara: http://sccgov.iqm2.com/Citizens/FileOpen.aspx?Type=14&ID=5764&Inline=True
