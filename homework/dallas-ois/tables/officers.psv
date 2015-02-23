@@ -2,7 +2,7 @@ case_number|date|suspect_killed|suspect_weapon|last_name|first_name|race|gender
 28021M|1/11/2003|false|Handgun|Fiero|Ernest|L|M
 40286M|1/17/2003|false|Handgun|Cozby|Melvin|W|M
 190589M|3/18/2003|true|Shotgun|Guynn|Byron|W|M
-291215M|4/23/2003|true|Knife|White|Phillip N|A|M
+291215M|4/23/2003|true|Knife|White|Phillip|NA|M
 368360M|5/9/2003|false|Handgun|Thompson|Dwayne|B|M
 403476M|6/1/2003|true|Handgun|Carballo|Rolando Jr.|L|M
 403476M|6/1/2003|true|Handgun|Alexander|Alphonse|B|M
@@ -52,7 +52,7 @@ case_number|date|suspect_killed|suspect_weapon|last_name|first_name|race|gender
 772767N|10/6/2004|true|Handgun|Price|Lawrence|B|M
 989995N|12/24/2004|false|Hands|Cordero|Daniel|L|M
 1004453N|12/29/2004|false|Vehicle|Nguyen|Buu|A|M
-141404P|2/23/2005|false|Handgun|White|Phillip N|A|M
+141404P|2/23/2005|false|Handgun|White|Phillip|NA|M
 227824P|3/25/2005|true|Handgun|Roberts|John|W|M
 363184P|5/9/2005|false|Vehicle|Woods|Jesse|W|M
 363184P|5/9/2005|false|Vehicle|Culp|Barrick|B|M
@@ -63,7 +63,7 @@ case_number|date|suspect_killed|suspect_weapon|last_name|first_name|race|gender
 986476P|12/13/2005|false|Handgun|Ashley|Larry|W|M
 997316P|12/18/2005|false|Handgun|Jefferson|Chad|B|M
 1016667P|12/25/2005|false|Shotgun|Cole|Bobby|B|M
-1066R|1/1/2006|false|Knife|Tahbone|Jacqueline N|A|F
+1066R|1/1/2006|false|Knife|Tahbone|Jacqueline|NA|F
 106454R|2/11/2006|false|Toy Gun|Jaquez|Christopher|L|M
 118251R|2/16/2006|false|Handgun|Wilkins|Kenneth|B|M
 118251R|2/16/2006|false|Handgun|Hackbarth|Dale|W|M
@@ -153,14 +153,14 @@ case_number|date|suspect_killed|suspect_weapon|last_name|first_name|race|gender
 148546W|5/24/2009|false|Handgun|Sigler|Clinton |W|M
 282646W|9/21/2009|true|Shotgun|Marvin|Ned|B|M
 282646W|9/21/2009|true|Shotgun|Mumford|Dennis|B|M
-287112W|9/26/2009|true|OC Spray|Matt|Barnes|W|M
+287112W|9/26/2009|true|OC Spray|Barnes|Matt|W|M
 288718W|9/27/2009|true|Unarmed|Ford|Paul|A|M
-286923W|10/8/2009|false|Handgun|Eduardo|Oliveros|L|M
+286923W|10/8/2009|false|Handgun|Oliveros|Eduardo|L|M
 309130W|10/17/2009|false|Handgun|Ferguson|Kesha|B|F
 309130W|10/17/2009|false|Handgun|Sharkey|Jonathan|L|M
 349201W|11/24/2009|false|Unarmed|Hodack|Steven|W|M
 371544W|12/18/2009|false|Hands|Crowley|David|W|M
-373521W|12/20/2009|false|Hands|Rebecca|Barrios|L|F
+373521W|12/20/2009|false|Hands|Barrios|Rebecca|L|F
 380792W|12/27/2009|true|Handgun|Lashley|Brian|W|M
 380792W|12/27/2009|true|Handgun|Correa|  Jason|L|M
 380792W|12/27/2009|true|Handgun|Burns|  Johsua|W|M

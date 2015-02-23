@@ -53,7 +53,6 @@ while read row; do
 	
 done < <(cat data-hold/*.html  | pup 'table table tr' | tr -d '\n' | sed 's:/tr>:/tr>\n:g')
 
-
 #========================
 # officers.psv
 #========================
@@ -99,10 +98,10 @@ while read incident; do
 					gender=$(echo $officer_line | cut -d ',' -f 2 | cut -d '/' -f 2 | sed 's/^ //g' | sed 's/ $//g')
 
 				elif [[ $last_name =~ " " && $last_name != "St. Clair" ]]; then #check for unusually formatted cases without commas
-					last_name=$(echo $last_name | cut -d ' ' -f 1)
+					last_name=$(echo $last_name | cut -d ' ' -f 2)
 					officer_line=$(echo $officer_line | sed 's/ /,/')
 
-					first_name=$(echo $officer_line | cut -d ',' -f 2 | sed 's/^ //g' | sed 's/ $//g')
+					first_name=$(echo $officer_line | cut -d ',' -f 1 | sed 's/^ //g' | sed 's/ $//g')
 					race=$(echo $officer_line | cut -d ',' -f 3 | cut -d '/' -f 1 | sed 's/^ //g' | sed 's/ $//g')
 					gender=$(echo $officer_line | cut -d ',' -f 3 | cut -d '/' -f 2 | sed 's/^ //g' | sed 's/ $//g')
 				
@@ -116,7 +115,7 @@ while read incident; do
 				printf '%s|%s|%s|%s|%s|%s|%s|%s\n' "$case_num" "$date" "$suspect_killed" "$suspect_weapon" "$last_name" "$first_name" "$race" "$gender" >> ./tables/officers.psv
 			fi
 
-		done < <(echo $officers | sed -E 's:[A-Z]/[A-Z]:,&\n:g')
+		done < <(echo $officers | sed -E 's:[A-Z]+/[A-Z]:,&\n:g')
 
 	else
 		last_name="See Summary"
@@ -167,11 +166,13 @@ while read incident; do
 					race=$(echo $suspect_line | cut -d ',' -f 2 | cut -d '/' -f 1 | sed 's/^ //g' | sed 's/ $//g')
 					gender=$(echo $suspect_line | cut -d ',' -f 2 | cut -d '/' -f 2 | sed 's/^ //g' | sed 's/ $//g')
 
-				elif [[ $last_name =~ "Dontrell Terrell" ]]; then #check for unusually formatted edge case
-					first_name="Dontrell"
-					last_name="Terrell"
-					race="B"
-					gender="M"
+				elif [[ $last_name =~ " " ]]; then #check for unusually formatted cases without commas
+					last_name=$(echo $last_name | cut -d ' ' -f 2)
+					suspect_line=$(echo $suspect_line | sed 's/ /,/')
+
+					first_name=$(echo $suspect_line | cut -d ',' -f 1 | sed 's/^ //g' | sed 's/ $//g')
+					race=$(echo $suspect_line | cut -d ',' -f 3 | cut -d '/' -f 1 | sed 's/^ //g' | sed 's/ $//g')
+					gender=$(echo $suspect_line | cut -d ',' -f 3 | cut -d '/' -f 2 | sed 's/^ //g' | sed 's/ $//g')
 
 				else
 					first_name=$(echo $suspect_line | cut -d ',' -f 2 | sed 's/^ //g' | sed 's/ $//g')
@@ -183,7 +184,7 @@ while read incident; do
 				printf '%s|%s|%s|%s|%s|%s|%s\n' "$case_num" "$date" "$suspect_weapon" "$last_name" "$first_name" "$race" "$gender" >> ./tables/suspects.psv
 			fi
 
-		done < <(echo $suspect | sed -E 's:[A-Z]/[A-Z]:,&\n:g')
+		done < <(echo $suspect | sed -E 's:[A-Z]+/[A-Z]:,&\n:g')
 
 	else
 		last_name="See Summary"
