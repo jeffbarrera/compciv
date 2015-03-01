@@ -11,7 +11,7 @@ cp -r ./dallas-police-shootings ~/WWW/projects/
 #############################################################
 
 # store geojson name as var
-geojson=~/WWW/projects/dallas-police-shootings/geojson.js
+geojson=~/WWW/projects/dallas-police-shootings/scripts/geojson.js
 
 # add array wrapper before loop
 cat > $geojson <<'EOF'
