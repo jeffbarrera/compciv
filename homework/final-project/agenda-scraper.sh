@@ -101,8 +101,7 @@ while read link; do
 		curl -s $baseURL/$url > $baseDir/current-pdfs/$filename # download pdf
 	fi
 
-############# change from past to upcoming once there are upcoming meetings ##################
-done < <(curl -s http://sccgov.iqm2.com/citizens/default.aspx?frame=no | pup '#ContentPlaceholder1_pnlPastMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}')
+done < <(curl -s http://sccgov.iqm2.com/citizens/default.aspx?frame=no | pup '#ContentPlaceholder1_pnlUpcomingMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}')
 
 
 
