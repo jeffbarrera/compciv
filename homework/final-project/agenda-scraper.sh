@@ -81,12 +81,12 @@ fi
 
 ####################################################### TEMP DEV STEP ################################################
 # delete all pdfs in current-pdfs - remove this line for production use
-rm $baseDir/current-pdfs/*.pdf
+# rm $baseDir/current-pdfs/*.pdf
 
 # if there are pdfs in santa-clara-county/current-pdfs, move to santa-clara-county/old-pdfs
-if [[ "$(ls -A $baseDir/current-pdfs)" ]]; then
-	mv $baseDir/current-pdfs/*.pdf $baseDir/old-pdfs
-fi
+# if [[ "$(ls -A $baseDir/current-pdfs)" ]]; then
+# 	mv $baseDir/current-pdfs/*.pdf $baseDir/old-pdfs
+# fi
 
 # download current agenda listing, extract agenda links
 while read link; do
@@ -101,7 +101,7 @@ while read link; do
 		curl -s $baseURL/$url > $baseDir/current-pdfs/$filename # download pdf
 	fi
 
-done < <(curl -s http://sccgov.iqm2.com/citizens/default.aspx?frame=no | pup '#ContentPlaceholder1_pnlUpcomingMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}')
+done < <(curl -s http://sccgov.iqm2.com/citizens/default.aspx?frame=no | pup '#ContentPlaceholder1_pnlPastMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}')
 
 
 
