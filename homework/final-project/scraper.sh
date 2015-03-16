@@ -31,10 +31,6 @@ if [[ ! -d $baseDir/old-pdfs ]]; then
 	mkdir $baseDir/old-pdfs
 fi
 
-####################################################### TEMP DEV STEP ################################################
-# delete all pdfs in current-pdfs - remove this line for production use
-rm $baseDir/current-pdfs/*.pdf
-
 # if there are pdfs in san-jose/current-pdfs, move to san-jose/old-pdfs
 if [[ "$(ls -A $baseDir/current-pdfs)" ]]; then
 	mv $baseDir/current-pdfs/*.pdf $baseDir/old-pdfs
@@ -49,10 +45,11 @@ while read link; do
 	# check if pdf has already been downloaded. if not, download the pdf
 	if [[ ! -s $baseDir/old-pdfs/$filename ]]; then
 		echo "downloading $filename"
-		curl -s $baseURL/$link > $baseDir/current-pdfs/$filename
+		curl -s -L -o $baseDir/current-pdfs/$filename $baseURL/$link 
+		sleep 1
 	fi
 
-done < <(curl -s http://sanjoseca.gov/index.aspx?NID=3549 | pup '#Section1 .telerik-reTable-2 tr td:first-of-type a:first-of-type attr{href}')
+done < <(curl -s http://sanjoseca.gov/index.aspx?NID=3549 | pup '#Section1 .telerik-reTable-2 tr td:first-of-type a:first-of-type attr{href}' | grep -E "[[:alnum:]]")
 
 
 #####################
@@ -79,14 +76,10 @@ if [[ ! -d $baseDir/old-pdfs ]]; then
 	mkdir $baseDir/old-pdfs
 fi
 
-####################################################### TEMP DEV STEP ################################################
-# delete all pdfs in current-pdfs - remove this line for production use
-# rm $baseDir/current-pdfs/*.pdf
-
 # if there are pdfs in santa-clara-county/current-pdfs, move to santa-clara-county/old-pdfs
-# if [[ "$(ls -A $baseDir/current-pdfs)" ]]; then
-# 	mv $baseDir/current-pdfs/*.pdf $baseDir/old-pdfs
-# fi
+if [[ "$(ls -A $baseDir/current-pdfs)" ]]; then
+	mv $baseDir/current-pdfs/*.pdf $baseDir/old-pdfs
+fi
 
 # download current agenda listing, extract agenda links
 while read link; do
@@ -101,7 +94,7 @@ while read link; do
 		curl -s $baseURL/$url > $baseDir/current-pdfs/$filename # download pdf
 	fi
 
-done < <(curl -s http://sccgov.iqm2.com/citizens/default.aspx?frame=no | pup '#ContentPlaceholder1_pnlPastMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}')
+done < <(curl -s -d 'ctl00$ContentPlaceholder1$DepartmentID'="1179" http://sccgov.iqm2.com/Citizens/Calendar.aspx | pup '#ContentPlaceholder1_pnlMeetings .MeetingRow .MeetingLinks div:first-of-type a attr{href}' | grep -E "[[:alnum:]]")
 
 
 

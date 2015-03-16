@@ -1,6 +1,14 @@
 #!/bin/sh
 
-# add pip installer, scraper
+###################################
+# SETUP
+###################################
+
+# make sure PDFminer is installed
+pip -q install PDFminer
+
+# add scraper
+bash scraper.sh
 
 ###################################
 # PARSE DOWNLOADED PDFs
@@ -35,16 +43,27 @@ bash pdf-parser_santa-clara.sh $output_filename
 
 echo "" #blank line to make output easier to read
 
-# check if a list of terms was passed in
-if [[ -n $1 ]]; then
-	echo "Searching for terms: $@"
-	bash relevance-scorer.sh $timestamp "$@"
+# check if there are agenda items to search
+num_lines=$(csvfix echo $output_filename | wc -l)
+if [[ $num_lines -gt 1 ]]; then
+	
+	# check if a list of terms was passed in
+	if [[ -n $1 ]]; then
+		echo "Searching for terms: $@"
+		bash relevance-scorer.sh $timestamp "$@"
+	else
+		echo "No terms provided, not calculating relevance scores"
+	fi
+
+	# print out completion status
+	echo ""
+	echo "================================================"
+	echo "AGENDA CHECK COMPLETED!"
+	echo "Output file: $output_filename"
 else
-	echo "No terms provided, not calculating relevance scores"
+	#no new agenda items, print completion message and delete empty file
+	#rm $output_filename
+	echo "Check completed, no new agenda items were found."
 fi
 
-# print out completion status
-echo ""
-echo "================================================"
-echo "AGENDA CHECK COMPLETED!"
-echo "Output file: $output_filename"
+
