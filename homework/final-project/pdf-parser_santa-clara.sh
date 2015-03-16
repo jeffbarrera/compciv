@@ -95,8 +95,8 @@ if [[ -n $1 ]]; then
 							reached_content=true
 						fi
 
-						#ignore "Time Certain" lines - they mess with the parsing format
-						if [[ ! $line =~ "Time Certain -" && $reached_content = true ]]; then
+						#ignore a few weird lines - they mess with the parsing format
+						if [[ ! $line =~ "Time Certain -" && $reached_content = true ]] && [[ ! $line =~ "Analyst position." && $reached_content = true ]]; then
 							in_section=true
 							clean_line=$(echo $line | sed -E 's/^[[:space:]]+//' | sed -E 's/[[:space:]]+?$//') #strip whitespace
 
@@ -115,7 +115,7 @@ if [[ -n $1 ]]; then
 						#statement
 
 						# check if line is an item heading
-						h2_regex="^[[:space:]]+?[[:digit:]]{1,}. [[:upper:]]"
+						h2_regex="^[[:space:]]+?[[:digit:]]{1,}\. [[:upper:]]"
 						if [[ $line =~ $h2_regex ]]; then
 
 							#dump completed previous item to csv
