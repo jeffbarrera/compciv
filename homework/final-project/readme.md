@@ -12,6 +12,10 @@ Usage
 --------
 To use, run the `agenda-checker.sh` script - this program calls the other scripts as needed. If you include a list of quoted, space-separated search terms, the script will use these to generate a relevance score for each agenda item (see the **Relevance Scoring** section below for details). The script will generate a date-stamped CSV file in the `tables` subdirectory.
 
+Example:
+
+	bash agenda-checker.sh "Budget" "public health"
+
 Notes
 --------
 * Agencies often post agendas for closed sessions, special events, and commission meetings on the same webpages. These documents do not follow the format of regular agendas, so are ignored by the parser script. When such an atypical document is encountered, the script will print out a message to review the document manually.
@@ -25,9 +29,8 @@ If you include a list of quoted, space-separated, case-insensitive terms as argu
 * On the assumption that ceremonial and routine items are less likely to be relevant, items listed under the consent calendar, ceremonial, and closing headings begin with a relevance score of 0.
 * For each mention of a term, the item's score is increased by 2.
 
-Usage example:
+Miscellaneous Thoughts
+-------------
+Given how standardized these agendas are, I wouldn't be at all surprised if there's an internal software program generating the PDFs. For two governments in the capital of Silicon Valley, it would be nice if they provided this information in a more accessible format. Still, once I developed the basic PDF parsing logic for the City of San Jose, it didn't take that long to adapt it for Santa Clara County, suggesting that it shouldn't be too difficult to expand this program to cover other local governments. 
 
-	bash agenda-checker.sh "Budget" "public health"
-
-
-CHECK WHAT ELSE SHOULD BE INCLUDED
+Also, while I think the relevance scoring system works fairly well, in the future I'd like to try applying machine learning techniques to see if that provides a more nuanced way to guess what's relevant. Maybe a project for Computational Journalism next quarter?
